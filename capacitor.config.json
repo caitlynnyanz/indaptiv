@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "indaptiv",
+	"webDir": "dist",
+	"bundledWebRuntime": false
+}

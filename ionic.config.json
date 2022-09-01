@@ -1,0 +1,8 @@
+{
+  "name": "indaptiv",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue",
+  "id": "ba4443ee"
+}
