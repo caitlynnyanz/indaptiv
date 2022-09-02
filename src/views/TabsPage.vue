@@ -18,12 +18,11 @@
           <ion-label>Create</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="tab2" href="/tabs/tab4">
+        <ion-tab-button tab="tab4" href="/tabs/tab4">
           <ion-icon :icon="document" />
           <ion-label>Journal</ion-label>
         </ion-tab-button>
-
-        <ion-tab-button tab="tab2" href="/tabs/tab5">
+        <ion-tab-button tab="tab5" href="/tabs/tab5">
           <ion-icon :icon="calendar" />
           <ion-label>Calendar</ion-label>
         </ion-tab-button>
@@ -38,7 +37,15 @@ import { home, bulb, add, document, calendar } from "ionicons/icons";
 
 export default {
   name: "TabsPage",
-  components: { IonLabel, IonTabs, IonTabBar, IonTabButton, IonIcon, IonPage, IonRouterOutlet },
+  components: {
+    IonLabel,
+    IonTabs,
+    IonTabBar,
+    IonTabButton,
+    IonIcon,
+    IonPage,
+    IonRouterOutlet,
+  },
   setup() {
     return {
       home,
