@@ -1,19 +1,20 @@
 <template>
   <div id="container">
     <strong>{{ name }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <p>
+      Explore
+      <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a>
+    </p>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'ExploreContainer',
+<script>
+export default {
+  name: "ExploreContainer",
   props: {
-    name: String
-  }
-});
+    name: String,
+  },
+};
 </script>
 
 <style scoped>

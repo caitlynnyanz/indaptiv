@@ -1,6 +1,13 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "indaptiv",
-	"webDir": "dist",
-	"bundledWebRuntime": false
+  "appId" : "io.ionic.starter", 
+  "appName" : "test-ionic-app",
+  "bundledWebRuntime" : false,
+  "npmClient" : "npm",
+  "webDir" : "dist",
+  "plugins" : {
+    "splashScreen" : {
+      "launchShowDuration" : 0
+    }
+  },
+  "cordova" : {}
 }
