@@ -1,6 +1,6 @@
 <script>
 import axios from "axios";
-import { IonPage, IonHeader, IonToolbar, IonTitle, menuController, IonButton, IonIcon, IonContent } from "@ionic/vue";
+import { IonPage, IonHeader, IonToolbar, IonTitle, menuController, IonButton, IonContent } from "@ionic/vue";
 import { menu } from "ionicons/icons";
 
 export default {
@@ -17,7 +17,6 @@ export default {
     IonContent,
     IonPage,
     IonButton,
-    IonIcon,
   },
   methods: {
     openMenu() {
@@ -29,7 +28,7 @@ export default {
         .then((response) => {
           axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
-          this.$router.push("/");
+          this.$router.push("/tabs/tab1");
         })
         .catch((error) => {
           console.log(error.response);
@@ -51,14 +50,11 @@ export default {
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-button slot="start" @click="openMenu()" expand="full">
-          <ion-icon :icon="menu" />
-        </ion-button>
-        <ion-title>Login</ion-title>
+        <ion-title class="title">Login</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content>
-      <div class="login">
+    <ion-content class="login">
+      <div>
         <form v-on:submit.prevent="submit()">
           <ul>
             <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
@@ -78,6 +74,17 @@ export default {
           <input type="submit" value="Submit" />
         </form>
       </div>
+      <br />
+      <ion-button href="/signup">Signup</ion-button>
     </ion-content>
   </ion-page>
 </template>
+
+<style>
+.title {
+  text-align: center;
+}
+.login {
+  text-align: center;
+}
+</style>
