@@ -1,6 +1,6 @@
 <script>
 import axios from "axios";
-import { IonPage, IonHeader, IonToolbar, IonTitle, menuController, IonButton, IonIcon, IonContent } from "@ionic/vue";
+import { IonPage, IonHeader, IonToolbar, IonTitle, menuController, IonButton, IonContent } from "@ionic/vue";
 
 import { menu } from "ionicons/icons";
 
@@ -18,7 +18,6 @@ export default {
     IonContent,
     IonPage,
     IonButton,
-    IonIcon,
   },
   methods: {
     openMenu() {
@@ -47,23 +46,26 @@ export default {
 <template>
   <ion-page>
     <ion-header>
-      <ion-toolbar>
-        <ion-button slot="start" @click="openMenu()" expand="full">
-          <ion-icon :icon="menu" />
-        </ion-button>
+      <ion-toolbar class="title">
         <ion-title>Signup</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content>
-      <div class="signup">
+    <ion-content class="signup">
+      <div>
         <form v-on:submit.prevent="submit()">
           <ul>
             <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
           </ul>
           <div>
-            <label>Name:</label>
+            <label>First Name:</label>
             <br />
-            <input type="text" v-model="newUserParams.name" />
+            <input type="text" v-model="newUserParams.first_name" />
+          </div>
+          <br />
+          <div>
+            <label>Last Name:</label>
+            <br />
+            <input type="text" v-model="newUserParams.last_name" />
           </div>
           <br />
           <div>
@@ -87,6 +89,17 @@ export default {
           <input type="submit" value="Submit" />
         </form>
       </div>
+      <br />
+      <ion-button href="/login">Login</ion-button>
     </ion-content>
   </ion-page>
 </template>
+
+<style>
+.title {
+  text-align: center;
+}
+.signup {
+  text-align: center;
+}
+</style>

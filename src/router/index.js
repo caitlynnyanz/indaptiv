@@ -8,7 +8,7 @@ import LogoutView from "../views/LogoutView.vue";
 const routes = [
   {
     path: "/",
-    redirect: "/tabs/tab1",
+    redirect: "/login",
   },
   {
     path: "/tabs/",
