@@ -2,17 +2,17 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Create</ion-title>
+        <ion-title>Calendar</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">Create</ion-title>
+          <ion-title size="large">Calendar</ion-title>
         </ion-toolbar>
       </ion-header>
 
-      <ExploreContainer name="Tab 3 page" />
+      <ExploreContainer name="Tab 5 page" />
     </ion-content>
   </ion-page>
 </template>
