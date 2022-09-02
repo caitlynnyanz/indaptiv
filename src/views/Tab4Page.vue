@@ -2,6 +2,9 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
+        <ion-button slot="start" @click="openMenu()" expand="full">
+          <ion-icon :icon="menu" />
+        </ion-button>
         <ion-title>Journal</ion-title>
       </ion-toolbar>
     </ion-header>
@@ -18,11 +21,22 @@
 </template>
 
 <script>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from "@ionic/vue";
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, menuController, IonButton, IonIcon } from "@ionic/vue";
 import ExploreContainer from "@/components/ExploreContainer.vue";
+import { menu } from "ionicons/icons";
 
 export default {
   name: "Tab3Page",
-  components: { ExploreContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage },
+  components: { ExploreContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonButton, IonIcon },
+  methods: {
+    openMenu() {
+      menuController.open("app-menu");
+    },
+  },
+  setup() {
+    return {
+      menu,
+    };
+  },
 };
 </script>
