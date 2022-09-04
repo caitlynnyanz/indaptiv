@@ -2,7 +2,7 @@
   <ion-menu menu-id="app-menu" content-id="main-content">
     <ion-header>
       <ion-toolbar>
-        <ion-title>Menu</ion-title>
+        <ion-title>Settings</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
@@ -12,6 +12,18 @@
         </ion-item>
         <ion-item v-if="!isLoggedIn" button @click="menuNavigation('/login')">
           <ion-label>Login</ion-label>
+        </ion-item>
+        <ion-item button @click="menuNavigation('/account')">
+          <ion-label>Account</ion-label>
+        </ion-item>
+        <ion-item button @click="menuNavigation('/settings')">
+          <ion-label>Notifications</ion-label>
+        </ion-item>
+        <ion-item button @click="menuNavigation('/invite')">
+          <ion-label>Invite Friends</ion-label>
+        </ion-item>
+        <ion-item button @click="menuNavigation('/settings/advanced')">
+          <ion-label>Advanced Settings</ion-label>
         </ion-item>
         <ion-item v-if="isLoggedIn" button @click="menuNavigation('/logout')">
           <ion-label>Logout</ion-label>
