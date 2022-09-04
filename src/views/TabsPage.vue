@@ -3,26 +3,26 @@
     <ion-tabs>
       <ion-router-outlet></ion-router-outlet>
       <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="tab1" href="/tabs/tab1">
+        <ion-tab-button tab="tab1" href="/tabs/dashboard">
           <ion-icon :icon="home" />
           <ion-label>Dashboard</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="tab2" href="/tabs/tab2">
+        <ion-tab-button tab="tab2" href="/tabs/habits">
           <ion-icon :icon="bulb" />
           <ion-label>Habits</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="tab3" href="/tabs/tab3">
+        <ion-tab-button tab="tab3" href="/tabs/create">
           <ion-icon :icon="add" />
           <ion-label>Create</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="tab4" href="/tabs/tab4">
+        <ion-tab-button tab="tab4" href="/tabs/journal">
           <ion-icon :icon="document" />
           <ion-label>Journal</ion-label>
         </ion-tab-button>
-        <ion-tab-button tab="tab5" href="/tabs/tab5">
+        <ion-tab-button tab="tab5" href="/tabs/calendar">
           <ion-icon :icon="calendar" />
           <ion-label>Calendar</ion-label>
         </ion-tab-button>

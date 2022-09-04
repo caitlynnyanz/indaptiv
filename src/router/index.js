@@ -4,6 +4,10 @@ import TabsPage from "../views/TabsPage.vue";
 import SignupView from "../views/SignupView.vue";
 import LoginView from "../views/LoginView.vue";
 import LogoutView from "../views/LogoutView.vue";
+import AccountView from "../views/AccountView.vue";
+import NotificationsView from "../views/NotificationsView.vue";
+import InviteView from "../views/InviteView.vue";
+import AdvancedSettings from "../views/AdvancedSettings.vue";
 
 const routes = [
   {
@@ -16,33 +20,37 @@ const routes = [
     children: [
       {
         path: "",
-        redirect: "/tabs/tab1",
+        redirect: "/tabs/dashboard",
       },
       {
-        path: "tab1",
-        component: () => import("@/views/Tab1Page.vue"),
+        path: "dashboard",
+        component: () => import("@/views/DashboardTab.vue"),
       },
       {
-        path: "tab2",
-        component: () => import("@/views/Tab2Page.vue"),
+        path: "habits",
+        component: () => import("@/views/HabitsTab.vue"),
       },
       {
-        path: "tab3",
-        component: () => import("@/views/Tab3Page.vue"),
+        path: "create",
+        component: () => import("@/views/CreateTab.vue"),
       },
       {
-        path: "tab4",
-        component: () => import("@/views/Tab4Page.vue"),
+        path: "journal",
+        component: () => import("@/views/JournalTab.vue"),
       },
       {
-        path: "tab5",
-        component: () => import("@/views/Tab5Page.vue"),
+        path: "calendar",
+        component: () => import("@/views/CalendarTab.vue"),
       },
     ],
   },
   { path: "/signup", name: "signup", component: SignupView },
   { path: "/login", name: "login", component: LoginView },
   { path: "/logout", name: "logout", component: LogoutView },
+  { path: "/account", name: "account", component: AccountView },
+  { path: "/notifications", name: "notifications", component: NotificationsView },
+  { path: "/invite", name: "invite", component: InviteView },
+  { path: "/settings/advanced", name: "advanced-settings", component: AdvancedSettings },
 ];
 
 const router = createRouter({
