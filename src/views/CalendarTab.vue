@@ -1,19 +1,16 @@
 <template>
   <ion-page>
     <ion-header>
-      <ion-toolbar>
-        <ion-button slot="start" @click="openMenu()" expand="full">
+      <ion-toolbar class="menu">
+        <ion-button slot="start" @click="openMenu()">
           <ion-icon :icon="menu" />
         </ion-button>
-        <ion-title>Calendar</ion-title>
+      </ion-toolbar>
+      <ion-toolbar>
+        <ion-title class="title">Calendar</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Calendar</ion-title>
-        </ion-toolbar>
-      </ion-header>
       <div class="calendar">
         <vue-cal
           selected-date="2022-09-04"
@@ -22,7 +19,7 @@
           active-view="month"
           events-on-month-view="short"
           :events="events"
-          style="height: 600px"
+          style="height: 750px"
         />
       </div>
     </ion-content>
@@ -31,7 +28,7 @@
 
 <script>
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, menuController, IonButton, IonIcon } from "@ionic/vue";
-// import ExploreContainer from "@/components/ExploreContainer.vue";
+
 import { menu } from "ionicons/icons";
 
 // Documentation: https://antoniandre.github.io/vue-cal
@@ -65,10 +62,10 @@ export default {
 }
 
 .vuecal {
-  height: 90vh;
+  height: 100vh;
 }
 .vuecal--month-view .vuecal__cell {
-  height: 80px;
+  height: 100px;
 }
 
 .vuecal--month-view .vuecal__cell-content {
@@ -86,5 +83,9 @@ export default {
 
 .calendar {
   padding: 25px;
+}
+
+.title {
+  text-align: center;
 }
 </style>

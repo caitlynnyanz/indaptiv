@@ -1,34 +1,29 @@
-<template>
-  <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-button slot="start" @click="openMenu()" expand="full">
-          <ion-icon :icon="menu" />
-        </ion-button>
-        <ion-title>Dashboard</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Dashboard</ion-title>
-        </ion-toolbar>
-      </ion-header>
-
-      <ExploreContainer name="Tab 1 page" />
-    </ion-content>
-  </ion-page>
-</template>
-
 <script>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, menuController, IonButton, IonIcon } from "@ionic/vue";
-import ExploreContainer from "@/components/ExploreContainer.vue";
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  menuController,
+  IonButton,
+  IonIcon,
+  IonCheckbox,
+  IonItem,
+  IonLabel,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+} from "@ionic/vue";
+
 import { menu } from "ionicons/icons";
+import axios from "axios";
 
 export default {
   name: "Tab1Page",
   components: {
-    ExploreContainer,
     IonHeader,
     IonToolbar,
     IonTitle,
@@ -36,10 +31,39 @@ export default {
     IonPage,
     IonButton,
     IonIcon,
+    IonCheckbox,
+    IonItem,
+    IonLabel,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardSubtitle,
+    IonCardTitle,
+  },
+  data: function () {
+    return {
+      goals: [],
+    };
+  },
+  created: function () {
+    this.indexGoals();
+    this.indexTasks();
   },
   methods: {
     openMenu() {
       menuController.open("app-menu");
+    },
+    indexGoals: function () {
+      axios.get("/goals").then((response) => {
+        console.log("goals index", response);
+        this.goals = response.data;
+      });
+    },
+    indexTasks: function () {
+      axios.get("/tasks").then((response) => {
+        console.log("tasks index", response);
+        this.tasks = response.data;
+      });
     },
   },
   setup() {
@@ -49,3 +73,48 @@ export default {
   },
 };
 </script>
+
+<template>
+  <ion-page>
+    <ion-header>
+      <ion-toolbar class="menu">
+        <ion-button slot="start" @click="openMenu()">
+          <ion-icon :icon="menu" />
+        </ion-button>
+      </ion-toolbar>
+      <ion-toolbar>
+        <ion-title class="title">Dashboard</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <br />
+      <ion-title>Daily to-do!</ion-title>
+      <br />
+      <ion-item v-for="task in tasks" v-bind:key="task.id">
+        <ion-checkbox slot="start"></ion-checkbox>
+        <ion-label>{{ task.name }}</ion-label>
+      </ion-item>
+      <br />
+      <ion-title>This weeks goals!</ion-title>
+      <ion-card v-for="goal in goals" v-bind:key="goal.id">
+        <ion-card-header>
+          <ion-card-subtitle>{{ goal.set_date }} - {{ goal.achieve_date }}</ion-card-subtitle>
+          <ion-card-title>{{ goal.name }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          {{ goal.description }}
+        </ion-card-content>
+      </ion-card>
+    </ion-content>
+  </ion-page>
+</template>
+
+<style scoped>
+ion-content {
+  text-align: left;
+}
+
+.title {
+  text-align: center;
+}
+</style>

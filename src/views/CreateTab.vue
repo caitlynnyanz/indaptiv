@@ -1,11 +1,13 @@
 <template>
   <ion-page>
     <ion-header>
-      <ion-toolbar>
-        <ion-button slot="start" @click="openMenu()" expand="full">
+      <ion-toolbar class="menu">
+        <ion-button slot="start" @click="openMenu()">
           <ion-icon :icon="menu" />
         </ion-button>
-        <ion-title>Create</ion-title>
+      </ion-toolbar>
+      <ion-toolbar>
+        <ion-title class="title">Create</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
@@ -40,3 +42,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.title {
+  text-align: center;
+}
+</style>
