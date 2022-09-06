@@ -121,7 +121,7 @@ ion-modal::part(backdrop) {
 }
 
 ion-modal ion-toolbar {
-  --background: #24474c;
+  --background: #1b4248;
   --color: white;
 }
 
