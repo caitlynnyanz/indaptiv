@@ -43,6 +43,7 @@ export default {
   data: function () {
     return {
       goals: [],
+      tasks: [],
     };
   },
   created: function () {

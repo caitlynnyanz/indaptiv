@@ -13,12 +13,12 @@
     <ion-content :fullscreen="true">
       <div class="calendar">
         <vue-cal
-          selected-date="2022-09-04"
+          :selected-date="dateToday"
           :time-from="0 * 60"
           :disable-views="['years', 'year']"
           active-view="month"
           events-on-month-view="short"
-          :events="events"
+          :events="formattedEvents"
           style="height: 750px"
         />
       </div>
@@ -35,13 +35,43 @@ import { menu } from "ionicons/icons";
 
 import VueCal from "vue-cal";
 import "vue-cal/dist/vuecal.css";
+import axios from "axios";
+var moment = require("moment");
 
 export default {
   name: "Tab3Page",
   components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonButton, IonIcon, VueCal },
+  data: function () {
+    return {
+      events: [],
+      formattedEvents: [],
+      newEvent: {},
+      dateToday: moment(new Date()).format("YYYY-MM-DD"),
+    };
+  },
+  created: function () {
+    this.indexEvents();
+  },
   methods: {
     openMenu() {
       menuController.open("app-menu");
+    },
+    indexEvents: function () {
+      axios.get("/events").then((response) => {
+        console.log("events index", response);
+        this.events = response.data;
+        for (let i = 0; i < response.data.length; i++) {
+          // console.log(response.data[i]);
+          let event = {
+            title: response.data[i].title,
+            start: moment.utc(response.data[i].start).format("YYYY-MM-DD H:mm"),
+            end: moment.utc(response.data[i].end).format("YYYY-MM-DD H:mm"),
+            class: response.data[i].class,
+          };
+          console.log(event);
+          this.formattedEvents.push(event);
+        }
+      });
     },
   },
   setup() {
@@ -87,5 +117,21 @@ export default {
 
 .title {
   text-align: center;
+}
+
+/* Different color for different event types. */
+.vuecal__event.habit {
+  background-color: rgba(253, 156, 66, 0.9);
+  border: 1px solid rgb(233, 136, 46);
+  color: #fff;
+}
+.vuecal__event.goal {
+  background-color: rgba(164, 230, 210, 0.9);
+  border: 1px solid rgb(144, 210, 190);
+}
+.vuecal__event.task {
+  background-color: rgba(255, 102, 102, 0.9);
+  border: 1px solid rgb(235, 82, 82);
+  color: #fff;
 }
 </style>
