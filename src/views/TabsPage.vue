@@ -22,12 +22,11 @@
         <ion-modal ref="modal" trigger="open-modal">
           <ion-content>
             <ion-toolbar>
-              <!-- <ion-title>What would you like to create?</ion-title> -->
               <ion-buttons slot="end">
                 <ion-button color="light" @click="dismiss()">Close</ion-button>
               </ion-buttons>
             </ion-toolbar>
-            <ion-list>
+            <ion-list style="height: 100%">
               <ion-title class="title">Create:</ion-title>
               <ion-item>
                 <ion-label class="label">
@@ -110,7 +109,8 @@ export default {
 
 <style>
 ion-modal {
-  --height: 50%;
+  --height: 25%;
+  --width: 400px;
   --border-radius: 16px;
   --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }

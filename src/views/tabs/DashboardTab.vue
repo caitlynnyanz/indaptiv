@@ -16,6 +16,7 @@ import {
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
+  IonImg,
 } from "@ionic/vue";
 
 import { menu } from "ionicons/icons";
@@ -39,6 +40,7 @@ export default {
     IonCardHeader,
     IonCardSubtitle,
     IonCardTitle,
+    IonImg,
   },
   data: function () {
     return {
@@ -47,22 +49,22 @@ export default {
     };
   },
   created: function () {
-    this.indexGoals();
+    this.indexWeeklyGoals();
     this.indexTasks();
   },
   methods: {
     openMenu() {
       menuController.open("app-menu");
     },
-    indexGoals: function () {
-      axios.get("/goals").then((response) => {
-        console.log("goals index", response);
+    indexWeeklyGoals: function () {
+      axios.get("/weekly_goals").then((response) => {
+        console.log("weekly_goals index", response);
         this.goals = response.data;
       });
     },
     indexTasks: function () {
-      axios.get("/tasks").then((response) => {
-        console.log("tasks index", response);
+      axios.get("/active_tasks").then((response) => {
+        console.log("active_tasks index", response);
         this.tasks = response.data;
       });
     },
@@ -82,6 +84,8 @@ export default {
         <ion-button slot="start" @click="openMenu()">
           <ion-icon :icon="menu" />
         </ion-button>
+        <!-- <ion-title class="logo" slot="end">indaptiv</ion-title> -->
+        <ion-img slot="end" src="assets/logo.png"></ion-img>
       </ion-toolbar>
       <ion-toolbar>
         <ion-title class="title">Dashboard</ion-title>
@@ -99,13 +103,17 @@ export default {
       <ion-title>This weeks goals!</ion-title>
       <ion-card v-for="goal in goals" v-bind:key="goal.id">
         <ion-card-header>
-          <ion-card-subtitle>{{ goal.set_date }} - {{ goal.achieve_date }}</ion-card-subtitle>
+          <!-- <ion-card-subtitle>{{ goal.start_date }} - {{ goal.end_date }}</ion-card-subtitle> -->
+          <ion-card-subtitle v-if="goal && goal.habit && goal.habit.name">
+            Habit: "{{ goal.habit.name }}"
+          </ion-card-subtitle>
           <ion-card-title>{{ goal.name }}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
           {{ goal.description }}
         </ion-card-content>
       </ion-card>
+      <ion-button class="index-button" href="/goals">View all goals</ion-button>
     </ion-content>
   </ion-page>
 </template>
@@ -117,5 +125,28 @@ ion-content {
 
 .title {
   text-align: center;
+}
+/* .logo {
+  font-family: Verdana, Tahoma, Helvetica, Arial, sans-serif;
+  color: #1b4248;
+} */
+
+ion-img {
+  height: 30px;
+  width: auto;
+  margin: 10px;
+}
+
+.index-button {
+  font-size: small;
+  height: 15px;
+  width: auto;
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
+
+ion-item {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 </style>
