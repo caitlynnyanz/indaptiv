@@ -16,7 +16,7 @@
         <ion-item button @click="menuNavigation('/account')">
           <ion-label>Account</ion-label>
         </ion-item>
-        <ion-item button @click="menuNavigation('/settings')">
+        <ion-item button @click="menuNavigation('/notifications')">
           <ion-label>Notifications</ion-label>
         </ion-item>
         <ion-item button @click="menuNavigation('/invite')">

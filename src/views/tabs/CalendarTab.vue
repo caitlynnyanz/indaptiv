@@ -5,6 +5,7 @@
         <ion-button slot="start" @click="openMenu()">
           <ion-icon :icon="menu" />
         </ion-button>
+        <ion-img slot="end" src="assets/logo.png"></ion-img>
       </ion-toolbar>
       <ion-toolbar>
         <ion-title class="title">Calendar</ion-title>
@@ -14,20 +15,38 @@
       <div class="calendar">
         <vue-cal
           :selected-date="dateToday"
-          :time-from="0 * 60"
           :disable-views="['years', 'year']"
-          active-view="month"
+          active-view="week"
+          :time="false"
           events-on-month-view="short"
           :events="formattedEvents"
           style="height: 750px"
         />
+        <!-- <vue-cal
+          xsmall
+          hide-view-selector
+          click-to-navigate
+          :time="false"
+          active-view="month"
+          :disable-views="['week']"
+        /> -->
       </div>
     </ion-content>
   </ion-page>
 </template>
 
 <script>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, menuController, IonButton, IonIcon } from "@ionic/vue";
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  menuController,
+  IonButton,
+  IonIcon,
+  IonImg,
+} from "@ionic/vue";
 
 import { menu } from "ionicons/icons";
 
@@ -40,7 +59,7 @@ var moment = require("moment");
 
 export default {
   name: "Tab3Page",
-  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonButton, IonIcon, VueCal },
+  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonButton, IonIcon, VueCal, IonImg },
   data: function () {
     return {
       events: [],
@@ -66,7 +85,7 @@ export default {
             title: response.data[i].title,
             start: moment.utc(response.data[i].start).format("YYYY-MM-DD H:mm"),
             end: moment.utc(response.data[i].end).format("YYYY-MM-DD H:mm"),
-            class: response.data[i].class,
+            class: response.data[i].color,
           };
           console.log(event);
           this.formattedEvents.push(event);
@@ -83,6 +102,10 @@ export default {
 </script>
 
 <style>
+.event-middle .vuecal__event-time,
+.event-end .vuecal__event-time {
+  display: none;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -118,20 +141,67 @@ export default {
 .title {
   text-align: center;
 }
+.vuecal__event-title {
+  font-size: 1em;
+
+  /* margin: 4px 0 8px; */
+}
+
+/* .vuecal__event-title {
+  font-size: 1em; */
+
+/* margin: 4px 0 8px; */
+/* } */
+@media (min-width: 768px) {
+  .vuecal__event-title {
+    font-size: 1em;
+
+    /* margin: 4px 0 8px; */
+  }
+}
+@media (max-width: 575.98px) {
+  .vuecal__event-title {
+    font-size: 0.7em;
+
+    /* margin: 4px 0 8px; */
+  }
+}
 
 /* Different color for different event types. */
-.vuecal__event.habit {
-  background-color: rgba(253, 156, 66, 0.9);
-  border: 1px solid rgb(233, 136, 46);
+.vuecal__event.aa {
+  background-color: rgba(252, 164, 63, 0.9);
+  border: 1px solid rgba(252, 164, 63, 0.9);
   color: #fff;
 }
-.vuecal__event.goal {
-  background-color: rgba(164, 230, 210, 0.9);
-  border: 1px solid rgb(144, 210, 190);
-}
-.vuecal__event.task {
-  background-color: rgba(255, 102, 102, 0.9);
-  border: 1px solid rgb(235, 82, 82);
+.vuecal__event.ab {
+  background-color: rgba(230, 212, 93, 0.9);
+  border: 1px solid rgba(230, 212, 93, 0.9);
   color: #fff;
+}
+.vuecal__event.ba {
+  background-color: rgba(84, 163, 113, 0.9);
+  border: 1px solid rgba(84, 163, 113, 0.9);
+  color: #fff;
+}
+.vuecal__event.bb {
+  background-color: rgba(106, 210, 144, 0.9);
+  border: 1px solid rgba(106, 210, 144, 0.9);
+  color: #fff;
+}
+.vuecal__event.ca {
+  background-color: rgba(90, 107, 145, 0.9);
+  border: 1px solid rgba(90, 107, 145, 0.9);
+  color: #fff;
+}
+.vuecal__event.cb {
+  background-color: rgba(53, 119, 166, 0.9);
+  border: 1px solid rgba(53, 119, 166, 0.9);
+  color: #fff;
+}
+
+ion-img {
+  height: 30px;
+  width: auto;
+  margin: 10px;
 }
 </style>
