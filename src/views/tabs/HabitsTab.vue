@@ -192,6 +192,7 @@ export default {
           <ion-label>Bookworm</ion-label>
         </ion-item>
       </ion-card>
+      <ion-button class="index-button" href="#">View all habits</ion-button>
       <br />
       <ion-title>Resources:</ion-title>
 
@@ -300,5 +301,12 @@ ion-button {
 }
 .article-button {
   margin-left: 33%;
+}
+.index-button {
+  font-size: small;
+  height: 15px;
+  width: auto;
+  margin-left: 20px;
+  margin-bottom: 30px;
 }
 </style>
