@@ -6,7 +6,7 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 axios.defaults.baseURL =
-  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://guarded-badlands-99137.herokuapp.com";
+  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://falling-thunder-8882.fly.dev";
 
 import { IonicVue } from "@ionic/vue";
 
